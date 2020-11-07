@@ -35,38 +35,25 @@ class GreetingModel {
     //Retrive all data
     findAllGreetings = (data, callback) => {
         Greeting.find(data, (err, result) => {
-                if (err)
-                    callback(err, null)
-
-                else
-                    callback(null, result)
-            })
+            err ? callback(err, null) : callback(null, result)
+        })
     }
     //Retive data by ID
-    findOneGreeting = (greetingId,callback) =>{
-        Greeting.findById(greetingId,(err,data)=>{
-            if(err)
-            callback(err,null)
-            else
-            callback(null,data)
+    findOneGreeting = (greetingId, callback) => {
+        Greeting.findById(greetingId, (err, data) => {
+            err ? callback(err, null) : callback(null, data)
         })
     }
 
-    updateGreeting = (greetingId,data,callback) => {
-            mongoose.set("useFindAndModify", false);
-            Greeting.findByIdAndUpdate(greetingId,data,(err)=>{
-                if(err)
-                callback(err,null)
-                else
-                callback(null,data)
-            })
+    updateGreeting = (greetingId, data, callback) => {
+        mongoose.set("useFindAndModify", false);
+        Greeting.findByIdAndUpdate(greetingId, data, (err) => {
+            err ? callback(err, null) : callback(null, data)
+        })
     }
-    deleteGreeting = (greetingId,callback) =>{
-        Greeting.findByIdAndDelete(greetingId,(err,data)=>{
-            if(err)
-            callback(err,null)
-            else
-            callback(null,data)
+    deleteGreeting = (greetingId, callback) => {
+        Greeting.findByIdAndDelete(greetingId, (err, data) => {
+            err ? callback(err, null) : callback(null, data)
         })
     }
 }

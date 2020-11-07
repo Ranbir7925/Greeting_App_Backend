@@ -40,7 +40,7 @@ class GreetingMessage {
         })
     }
 
-    findAllGreeting = (req, res) => {
+    findAllGreeting = (_req, res) => {
         var responseResult = {}
         greetingService.findAllGreetings(function (err, data) {
             if (err) {
@@ -57,21 +57,21 @@ class GreetingMessage {
             }
         })
     }
-    findOneGreeting = (req,res) =>{
+    findOneGreeting = (req, res) => {
         var responseResult = {}
-        if(!req.params.greetingId){
+        if (!req.params.greetingId) {
             return res.status(404).send({
-                message:"Greeting not found with id " + req.params.greetingId
+                message: "Greeting not found with id " + req.params.greetingId
             })
         }
-        greetingService.findOneGreeting(req.params.greetingId,(err,data)=>{
-            if(err){
+        greetingService.findOneGreeting(req.params.greetingId, (err, data) => {
+            if (err) {
                 responseResult.success = false;
                 responseResult.error = err
                 responseResult.message = "Could not find greetings with the given id";
-                res.status(422).send(responseResult); 
+                res.status(422).send(responseResult);
             }
-            else{
+            else {
                 responseResult.success = true;
                 responseResult.data = data;
                 responseResult.message = `Greeting by id ${req.params.greetingId} found successfully.`;
@@ -80,17 +80,17 @@ class GreetingMessage {
         })
     }
 
-    updateGreeting = (req,res) =>{
+    updateGreeting = (req, res) => {
         var responseResult = {}
 
-        greetingService.updateGreeting(req.params.greetingId,req.body,(err,data)=>{
-            if(err){
+        greetingService.updateGreeting(req.params.greetingId, req.body, (err, data) => {
+            if (err) {
                 responseResult.success = false;
                 responseResult.error = err;
                 responseResult.message = "Could not update greeting with the given id";
-                res.status(422).send(responseResult); 
+                res.status(422).send(responseResult);
             }
-            else{
+            else {
                 responseResult.success = true;
                 responseResult.data = data;
                 responseResult.message = "Greeting updated successfully.";
@@ -98,15 +98,15 @@ class GreetingMessage {
             }
         })
     }
-    deleteGreeting=(req,res) => {
+    deleteGreeting = (req, res) => {
         var responseResult = {}
-        greetingService.deleteGreeting(req.params.greetingId,(err,data)=>{
+        greetingService.deleteGreeting(req.params.greetingId, (err, data) => {
             if (err) {
                 responseResult.success = false;
                 responseResult.error = err;
                 responseResult.message = "Could not delete greeting with the given id";
                 res.status(422).send(responseResult);
-            }else{
+            } else {
                 responseResult.success = true;
                 responseResult.data = data;
                 responseResult.message = "Greeting deleted ";
