@@ -9,4 +9,5 @@ module.exports = (app) => {
 
     // Retrieve all Greetings
     app.get('/find', greeting.findAllGreeting);
+    app.get('/findByID/:greetingId', greeting.findOneGreeting);
 }

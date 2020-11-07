@@ -34,11 +34,21 @@ class GreetingModel {
 
     //Retrive all data
     findAllGreetings = (data, callback) => {
-        Greeting.find(data, function (err, result) {
-            if (err)
-                callback(err, null)
+        Greeting.find(data, (err, result) => {
+                if (err)
+                    callback(err, null)
+
+                else
+                    callback(null, result)
+            })
+    }
+    //Retive data by ID
+    findOneGreeting = (greetingId,callback) =>{
+        Greeting.findById(greetingId,(err,data)=>{
+            if(err)
+            callback(err,null)
             else
-                callback(null, result)
+            callback(null,data)
         })
     }
 }

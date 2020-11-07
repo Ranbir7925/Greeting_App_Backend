@@ -57,6 +57,28 @@ class GreetingMessage {
             }
         })
     }
+    findOneGreeting = (req,res) =>{
+        var responseResult = {}
+        if(!req.params.greetingId){
+            return res.status(404).send({
+                message:"Greeting not found with id " + req.params.greetingId
+            })
+        }
+        greetingService.findOneGreeting(req.params.greetingId,(err,data)=>{
+            if(err){
+                responseResult.success = false;
+                responseResult.error = err
+                responseResult.message = "Could not find greetings with the given id";
+                res.status(422).send(responseResult); 
+            }
+            else{
+                responseResult.success = true;
+                responseResult.data = data;
+                responseResult.message = `Greeting by id ${req.params.greetingId} found successfully.`;
+                res.status(200).send(responseResult);
+            }
+        })
+    }
 
 
 }
