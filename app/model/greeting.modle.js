@@ -25,7 +25,6 @@ class GreetingModel {
                 name: data.name,
                 greeting: data.greeting
             })
-            console.log(greeting);
             greeting.save()
             callback(null, greeting)
         } catch (err) {

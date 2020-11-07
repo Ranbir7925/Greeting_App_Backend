@@ -1,4 +1,3 @@
-// const greetingService = require('../service/greeting.service.js')
 const greetingService = require('../service/greeting.service')
 const joi = require('joi')
 
@@ -12,15 +11,12 @@ class GreetingMessage {
     }
 
     createGreeting = (req, res) => {
-        console.log("break1")
         var responseResult = {};
-        const {error} = this.validateMeassage(req.body)
-        console.log(error)
-        console.log("break2")
+        const { error } = this.validateMeassage(req.body)
         if (error) {
             responseResult.success = false;
             responseResult.message = "Could not create a greeting";
-            responseResult.error = error
+            responseResult.error = error.details[0].message
             res.status(400).send(responseResult)
         } else {
             var greetingContent = {
@@ -30,16 +26,16 @@ class GreetingMessage {
         }
         greetingService.createGreeting(greetingContent, function (err, data) {
             if (err) {
-                responseResult.success = false;
-                responseResult.error = err;
-                responseResult.message = "Could not create a greeting";
-                res.status(400).send(responseResult);
+                responseResult.success = false
+                responseResult.error = err
+                responseResult.message = "Could not create a greeting"
+                res.status(400).send(responseResult)
             }
             else {
-                responseResult.success = true;
-                responseResult.data = data;
-                responseResult.message = "Greeting created successfully.";
-                res.status(200).send(responseResult);
+                responseResult.success = true
+                responseResult.data = data
+                responseResult.message = "Greeting created successfully."
+                res.status(200).send(responseResult)
             }
         })
     }
