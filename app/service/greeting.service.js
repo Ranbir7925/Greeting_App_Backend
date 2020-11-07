@@ -28,5 +28,23 @@ class GreetingService{
             callback(null,result)
         })
     }
+
+    updateGreeting = (id,data,callback)=>{
+        Greeting.updateGreeting(id,data,(err,result)=>{
+            if(err)
+            callback(err,null)
+            else
+            callback(null,result)
+        })
+    }
+
+    deleteGreeting = (id,callback)=>{
+        Greeting.deleteGreeting(id,(err,result)=>{
+            if(err)
+            callback(err,null)
+            else
+            callback(null,result)
+        })
+    }
 }
 module.exports =  new GreetingService()

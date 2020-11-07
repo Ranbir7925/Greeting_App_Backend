@@ -10,4 +10,6 @@ module.exports = (app) => {
     // Retrieve all Greetings
     app.get('/find', greeting.findAllGreeting);
     app.get('/findByID/:greetingId', greeting.findOneGreeting);
+    app.put('/updateByID/:greetingId', greeting.updateGreeting);
+    app.delete('/deleteByID/:greetingId', greeting.deleteGreeting);
 }

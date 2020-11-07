@@ -80,6 +80,41 @@ class GreetingMessage {
         })
     }
 
+    updateGreeting = (req,res) =>{
+        var responseResult = {}
+
+        greetingService.updateGreeting(req.params.greetingId,req.body,(err,data)=>{
+            if(err){
+                responseResult.success = false;
+                responseResult.error = err;
+                responseResult.message = "Could not update greeting with the given id";
+                res.status(422).send(responseResult); 
+            }
+            else{
+                responseResult.success = true;
+                responseResult.data = data;
+                responseResult.message = "Greeting updated successfully.";
+                res.status(200).send(responseResult)
+            }
+        })
+    }
+    deleteGreeting=(req,res) => {
+        var responseResult = {}
+        greetingService.deleteGreeting(req.params.greetingId,(err,data)=>{
+            if (err) {
+                responseResult.success = false;
+                responseResult.error = err;
+                responseResult.message = "Could not delete greeting with the given id";
+                res.status(422).send(responseResult);
+            }else{
+                responseResult.success = true;
+                responseResult.data = data;
+                responseResult.message = "Greeting deleted ";
+                res.status(200).send(responseResult);
+            }
+        })
+    }
+
 
 }
 
