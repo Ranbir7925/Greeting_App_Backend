@@ -1,7 +1,25 @@
+/*************************************************************
+ *
+ * Execution       : default node cmd> node greeting.controller.js
+ * Purpose         : Define actions for various http methods
+ *
+ * @description    : Actions to be done when http methods are called. 
+ * @file           : greeting.controller.js
+ * @author         : Ranbir Singh
+ * @overview       : Actions of http methods
+ * @module         : controller
+ * @version        : 1.0
+ * @since          : 08/11/2020
+ *
+ * **********************************************************/
 const greetingService = require('../service/greeting.service')
 const joi = require('joi')
 
 class GreetingMessage {
+    /**
+   * Function to validate request
+   * @param {*} message
+   */
     validateMeassage = (message) => {
         const schema = joi.object({
             name: joi.string().min(3).required(),
@@ -10,6 +28,11 @@ class GreetingMessage {
         return schema.validate(message)
     }
 
+    /**
+     * controller to past request to create service
+     * @param {httpRequest} req
+     * @param {httpresponse} res
+     */
     createGreeting = (req, res) => {
         var responseResult = {};
         const { error } = this.validateMeassage(req.body)
@@ -40,6 +63,10 @@ class GreetingMessage {
         })
     }
 
+    /**
+     * @params {object} data
+     * Retrieve and return all greetings from the database.
+     */
     findAllGreeting = (_req, res) => {
         var responseResult = {}
         greetingService.findAllGreetings(function (err, data) {
@@ -57,6 +84,11 @@ class GreetingMessage {
             }
         })
     }
+
+    /**
+     * @params {object} data
+     * Retrieve and return greeting from the database.
+     */
     findOneGreeting = (req, res) => {
         var responseResult = {}
         if (!req.params.greetingId) {
@@ -80,9 +112,12 @@ class GreetingMessage {
         })
     }
 
+    /**
+     * @params {object} data
+     * Update greetings from the database.
+     */
     updateGreeting = (req, res) => {
         var responseResult = {}
-
         greetingService.updateGreeting(req.params.greetingId, req.body, (err, data) => {
             if (err) {
                 responseResult.success = false;
@@ -98,6 +133,11 @@ class GreetingMessage {
             }
         })
     }
+
+    /**
+     * @params {object} data
+     * Delete greetings from the database.
+     */
     deleteGreeting = (req, res) => {
         var responseResult = {}
         greetingService.deleteGreeting(req.params.greetingId, (err, data) => {
@@ -114,8 +154,5 @@ class GreetingMessage {
             }
         })
     }
-
-
 }
-
 module.exports = GreetingMessage

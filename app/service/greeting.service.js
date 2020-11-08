@@ -1,33 +1,60 @@
-const Greeting = require('../model/greeting.modle')
+/***********************************************************************************
+ * Purpose      : Service layer containg business logic
+ * @file        : service.js
+ * @module      : greeting.model.js
+ * @author      : Ranbir Singh
+ * @since       : 08/11/2020
+ *************************************************************************************/
+const greetingRoute = require('../model/greeting.modle')
 
 class GreetingService {
+    /**
+     * @params {object} data which will be passed to model layer
+     * @params {callback function} callback
+     */
     createGreeting = (data, callback) => {
-        Greeting.createGreeting(data, (err, result) => {
+        greetingRoute.createGreeting(data, (err, result) => {
             err ? callback(err, null) : callback(null, result)
         })
     }
 
+    /**
+     * @params {object} data which will be passed to model layer
+     * @params {callback function} callback
+     */
     findAllGreetings = (data, callback) => {
-        Greeting.findAllGreetings(data, (err, result) => {
+        greetingRoute.findAllGreetings(data, (err, result) => {
             err ? callback(err, null) : callback(null, result)
         })
     }
 
+    /**
+     * @params {object} data which will be passed to model layer
+     * @params {callback function} callback
+     */
     findOneGreeting = (data, callback) => {
 
-        Greeting.findOneGreeting(data, (err, result) => {
+        greetingRoute.findOneGreeting(data, (err, result) => {
             err ? callback(err, null) : callback(null, result)
         })
     }
 
+    /**
+     * @params {object} data which will be passed to model layer
+     * @params {callback function} callback
+     */
     updateGreeting = (id, data, callback) => {
-        Greeting.updateGreeting(id, data, (err, result) => {
+        greetingRoute.updateGreeting(id, data, (err, result) => {
             err ? callback(err, null) : callback(null, result)
         })
     }
 
+    /**
+     * @params {object} data which will be passed to model layer
+     * @params {callback function} callback
+     */
     deleteGreeting = (id, callback) => {
-        Greeting.deleteGreeting(id, (err, result) => {
+        greetingRoute.deleteGreeting(id, (err, result) => {
             err ? callback(err, null) : callback(null, result)
         })
     }
