@@ -8,6 +8,7 @@
  *************************************************************************************/
 const mongoose = require('mongoose')
 
+
 /**
  * @var {String} name
  * @var {String} greeting 
@@ -34,7 +35,7 @@ class GreetingModel {
      * @param {object} data coming from service layer
      * @param {*} callback for check error 
      */
-    createGreeting = (data, callback) => {
+    create = (data, callback) => {
         try {
             const greeting = new Greeting({
                 name: data.name,
@@ -50,7 +51,7 @@ class GreetingModel {
     /**
      * To retrive all data from database
      */
-    findAllGreetings = (data, callback) => {
+    findAll = (data, callback) => {
         Greeting.find(data, (err, result) => {
             err ? callback(err, null) : callback(null, result)
         })
@@ -59,7 +60,7 @@ class GreetingModel {
     /**
      * Find a single greeting with a greetingId
      */
-    findOneGreeting = (greetingId, callback) => {
+    findOne = (greetingId, callback) => {
         Greeting.findById(greetingId, (err, data) => {
             err ? callback(err, null) : callback(null, data)
         })
@@ -68,17 +69,17 @@ class GreetingModel {
     /**
      * Update a greeting identified by the greetingId in the request
      */
-    updateGreeting = (greetingId, data, callback) => {
+    update = (greetingId, data, callback) => {
         mongoose.set("useFindAndModify", false);
         Greeting.findByIdAndUpdate(greetingId, data, (err) => {
-            err ? callback(err, null) : callback(null, data)
+            err ? callback(err, null) : callback(null, data) 
         })
     }
 
     /**
      * Delete a greeting with the specified greetingId in the request
      */
-    deleteGreeting = (greetingId, callback) => {
+    delete = (greetingId, callback) => {
         Greeting.findByIdAndDelete(greetingId, (err, data) => {
             err ? callback(err, null) : callback(null, data)
         })

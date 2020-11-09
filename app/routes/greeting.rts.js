@@ -6,7 +6,7 @@
  * @version     : 1.0
  * @since       : 08/11/2020
  *************************************************************************************/
-const GreetingMesaage = require('../controller/greeting.controller.js')
+const GreetingMesaage = require('../controller/greeting.ctr.js')
 var greeting = new GreetingMesaage
 module.exports = (app) => {
     //Define a simple route to display Message at the homepage

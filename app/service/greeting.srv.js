@@ -5,7 +5,7 @@
  * @author      : Ranbir Singh
  * @since       : 08/11/2020
  *************************************************************************************/
-const greetingRoute = require('../model/greeting.modle')
+const greetingRoute = require('../model/greeting.mdl')
 
 class GreetingService {
     /**
@@ -13,7 +13,7 @@ class GreetingService {
      * @params {callback function} callback
      */
     createGreeting = (data, callback) => {
-        greetingRoute.createGreeting(data, (err, result) => {
+        greetingRoute.create(data, (err, result) => {
             err ? callback(err, null) : callback(null, result)
         })
     }
@@ -23,7 +23,7 @@ class GreetingService {
      * @params {callback function} callback
      */
     findAllGreetings = (data, callback) => {
-        greetingRoute.findAllGreetings(data, (err, result) => {
+        greetingRoute.findAll(data, (err, result) => {
             err ? callback(err, null) : callback(null, result)
         })
     }
@@ -33,8 +33,7 @@ class GreetingService {
      * @params {callback function} callback
      */
     findOneGreeting = (data, callback) => {
-
-        greetingRoute.findOneGreeting(data, (err, result) => {
+        greetingRoute.findOne(data, (err, result) => {
             err ? callback(err, null) : callback(null, result)
         })
     }
@@ -44,7 +43,7 @@ class GreetingService {
      * @params {callback function} callback
      */
     updateGreeting = (id, data, callback) => {
-        greetingRoute.updateGreeting(id, data, (err, result) => {
+        greetingRoute.update(id, data, (err, result) => {
             err ? callback(err, null) : callback(null, result)
         })
     }
@@ -54,7 +53,7 @@ class GreetingService {
      * @params {callback function} callback
      */
     deleteGreeting = (id, callback) => {
-        greetingRoute.deleteGreeting(id, (err, result) => {
+        greetingRoute.delete(id, (err, result) => {
             err ? callback(err, null) : callback(null, result)
         })
     }
