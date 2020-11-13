@@ -9,18 +9,18 @@
 const GreetingMesaage = require('../controller/greeting.ctr.js')
 var greeting = new GreetingMesaage
 module.exports = (app) => {
-    //Define a simple route to display Message at the homepage
+    // Define a simple route to display Message at the homepage
     app.get('/', (_req, res) => {
         res.json({ "message": "Welcome to Greeting Application" })
     })
     // Retrieve all Greetings
-    app.get('/find', greeting.findAllGreeting);
+    app.get('/greeting', greeting.findAllGreeting);
     // Retrieve a single Greeting with greetingId
-    app.get('/findByID/:greetingId', greeting.findOneGreeting);
+    app.get('/greeting/:greetingId', greeting.findOneGreeting);
     // Create a new Greeting
-    app.post('/create', greeting.createGreeting);
+    app.post('/greeting', greeting.createGreeting);
     // Update a Greeting with greetingId
-    app.put('/updateByID/:greetingId', greeting.updateGreeting);
+    app.put('/greeting/:greetingId', greeting.updateGreeting);
     // Delete a Greeting with greetingId
-    app.delete('/deleteByID/:greetingId', greeting.deleteGreeting);
+    app.delete('/greeting/:greetingId', greeting.deleteGreeting);
 }
