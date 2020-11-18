@@ -14,19 +14,19 @@
  *
  * **********************************************************/
 require('dotenv/config')
+require('./config/dbConfig')
 const logger = require('./logger')
 const express = require('express')
 const bodyParser = require('body-parser')
-// const PORT = 4000
-require('./config/dbConfig')
-/**
- * create express app
- */
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger/Swagger.json');
+
+//create express app
 const app = express()
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json())
 require('./app/routes/greeting.rts.js')(app)
 
-app.listen(process.env.PORT, () => console.log(`Server is listening on port ${process.env.PORT}`))
-logger.info("Server started")
+app.use('/swagger',swaggerUi.serve,swaggerUi.setup(swaggerDocument));
+app.listen(process.env.PORT, () => logger.info(`Server is listening on port ${process.env.PORT}`))
